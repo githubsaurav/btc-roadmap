@@ -1,15 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useProgress } from "@/lib/progress/use-progress";
+import { useProgressContext } from "@/lib/progress/ProgressProvider";
 import { ProfileOnboarding } from "@/components/ProfileOnboarding";
 import { ProgressHeader } from "@/components/ProgressHeader";
-import { WeekCard } from "@/components/WeekCard";
+import { WeekTimeline } from "@/components/WeekTimeline";
 import { Confetti } from "@/components/Confetti";
-import { weeks, allTasks } from "@/lib/roadmap-data";
+import { allTasks } from "@/lib/roadmap-data";
 
 export function RoadmapApp() {
-  const { profile, completed, loading, createProfile, toggleTask, backend } = useProgress();
+  const { profile, completed, loading, createProfile, backend } = useProgressContext();
   const [confettiKey, setConfettiKey] = useState(0);
   const wasComplete = useRef(false);
 
@@ -33,11 +33,7 @@ export function RoadmapApp() {
     <div className="space-y-6">
       <Confetti burstKey={confettiKey} />
       <ProgressHeader profile={profile} completed={completed} backend={backend} />
-      <div className="grid gap-5">
-        {weeks.map((week) => (
-          <WeekCard key={week.id} week={week} completed={completed} onToggle={toggleTask} />
-        ))}
-      </div>
+      <WeekTimeline completed={completed} />
     </div>
   );
 }

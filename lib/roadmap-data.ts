@@ -18,6 +18,23 @@ export interface ApproachStep {
   detail: string;
 }
 
+export interface QuestionCategory {
+  category: string;
+  description: string;
+  examples: string[];
+}
+
+export interface CompanyPrep {
+  name: string;
+  emoji: string;
+  focus: string;
+}
+
+export interface MockQuestionType {
+  category: string;
+  example: string;
+}
+
 export interface Week {
   id: string;
   weekNumber: number;
@@ -35,6 +52,12 @@ export interface Week {
   suggestedIndustries?: { industry: string; products: string }[];
   /** Week 1 only: the worked Swiggy-flow example, step by step. */
   workedExample?: { step: string; questions: string[] }[];
+  /** Weeks 2-5: the two families of questions to expect, each with worked examples. */
+  typesOfQuestions?: QuestionCategory[];
+  /** Week 6 only: company-specific prep focus areas. */
+  companyPrep?: CompanyPrep[];
+  /** Week 6 only: the five mock formats, one example each. */
+  mockQuestionTypes?: MockQuestionType[];
 }
 
 export const weeks: Week[] = [
@@ -144,6 +167,22 @@ export const weeks: Week[] = [
       "A repeatable framework for interviews",
     ],
     footerTags: ["Clarify the problem", "Design with users in mind", "Show trade-offs clearly"],
+    typesOfQuestions: [
+      {
+        category: "1. Hypothetical Design",
+        description: "Design something new for a user or problem.",
+        examples: [
+          "Design a product for students to split expenses",
+          "Design a solution for elderly users to manage medicines",
+          "Design a product for travellers with delayed flights",
+        ],
+      },
+      {
+        category: "2. Improve an Existing Product",
+        description: "Improve a product, feature or journey that already exists.",
+        examples: ["Improve Swiggy search", "Improve Spotify discovery", "Improve LinkedIn networking for MBA students"],
+      },
+    ],
   },
   {
     id: "w3",
@@ -179,6 +218,28 @@ export const weeks: Week[] = [
       "A repeatable framework for interviews",
     ],
     footerTags: ["Break the problem down", "Use metrics with purpose", "Think in hypotheses"],
+    typesOfQuestions: [
+      {
+        category: "1. RCA Questions",
+        description: "Diagnose what went wrong and why.",
+        examples: [
+          "Swiggy's order completion rate dropped in a city",
+          "Spotify activation is down for new users",
+          "Netflix watch time fell among new users",
+          "A fintech app is seeing rising churn",
+        ],
+      },
+      {
+        category: "2. Metrics Questions",
+        description: "Define and prioritise what should be measured.",
+        examples: [
+          "What metrics should Swiggy track end to end?",
+          "How would you measure Spotify's free-to-premium conversion?",
+          "What are the key metrics for Uber?",
+          "How would you measure the health of a B2B SaaS product?",
+        ],
+      },
+    ],
   },
   {
     id: "w4",
@@ -215,6 +276,28 @@ export const weeks: Week[] = [
       "Stronger business judgment and trade-off thinking",
     ],
     footerTags: ["Think end-to-end", "Use frameworks, not just instinct", "Be ready to defend your trade-offs"],
+    typesOfQuestions: [
+      {
+        category: "1. Go-To-Market Strategy",
+        description: "How would you take a product to market and drive growth?",
+        examples: [
+          "Launch a new product in a new market",
+          "Grow an existing product in a target segment",
+          "Define pricing, positioning and distribution",
+          "Design a partnership or channel strategy",
+        ],
+      },
+      {
+        category: "2. Prioritisation",
+        description: "Which features or bets should we prioritise and why?",
+        examples: [
+          "Prioritise features for the next quarter",
+          "Allocate resources across multiple opportunities",
+          "Decide what to build, defer or drop",
+          "Consider user value, business impact and effort",
+        ],
+      },
+    ],
   },
   {
     id: "w5",
@@ -251,6 +334,28 @@ export const weeks: Week[] = [
       "Clear product deep dives with insights and recommendations",
     ],
     footerTags: ["Practice with real-world examples", "Refine your stories and frameworks", "Build confidence through mocks"],
+    typesOfQuestions: [
+      {
+        category: "1. Guesstimates",
+        description: "Estimate real-world numbers using assumptions and logic.",
+        examples: [
+          "Market size of quick commerce in India",
+          "Number of Uber rides in a day in Bengaluru",
+          "Revenue of a D2C brand",
+          "Number of laptops sold in India annually",
+        ],
+      },
+      {
+        category: "2. Behavioural & Favourite Product",
+        description: "Showcase your experiences, insights and product thinking.",
+        examples: [
+          "Tell me about a time you led a project",
+          "Describe a conflict and how you handled it",
+          "Deep dive on a product you love (e.g. Spotify, Swiggy, Notion, ChatGPT)",
+          "Product decisions, metrics, strategy and future scope",
+        ],
+      },
+    ],
   },
   {
     id: "w6",
@@ -287,6 +392,21 @@ export const weeks: Week[] = [
       "Clearer articulation and stronger confidence",
     ],
     footerTags: ["Practice like it's the real thing", "Learn from feedback, improve iteratively", "Be interview ready and confident"],
+    mockQuestionTypes: [
+      { category: "Product Sense", example: "How would you improve Swiggy One?" },
+      { category: "Product Design", example: "Design a product for senior citizens." },
+      { category: "Strategy", example: "Why do you think Netflix's growth in India has slowed?" },
+      { category: "Metrics / Analytical", example: "Estimate the number of online grocery orders in India." },
+      { category: "Behavioural", example: "Tell me about a time you handled a conflict." },
+    ],
+    companyPrep: [
+      { name: "Google", emoji: "🔍", focus: "Product strategy, recent launches, key metrics, culture" },
+      { name: "Microsoft", emoji: "🪟", focus: "Cloud, AI, product portfolio, recent news" },
+      { name: "Amazon", emoji: "📦", focus: "Leadership principles, growth levers, case studies" },
+      { name: "Fintech / D2C", emoji: "💳", focus: "Business model, unit economics, recent initiatives" },
+      { name: "Netflix", emoji: "🎬", focus: "User growth, content strategy, India opportunity" },
+      { name: "Zomato", emoji: "🍽️", focus: "Food delivery dynamics, profitability, competition" },
+    ],
   },
 ];
 

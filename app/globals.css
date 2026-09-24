@@ -28,6 +28,28 @@
   --color-week-5-bg: color-mix(in srgb, var(--color-week-5) 10%, var(--color-surface));
   --color-week-6-bg: color-mix(in srgb, var(--color-week-6) 10%, var(--color-surface));
 
+  /*
+   * Panel roles — fixed meaning across every week screen (what-this-means is
+   * always blue, what-to-do is always green, reference is always amber,
+   * approach/output is always violet), independent of the per-week identity
+   * color above. Mirrors the source deck's own panel colors.
+   */
+  --color-role-blue: #2563eb;
+  --color-role-blue-bg: color-mix(in srgb, var(--color-role-blue) 7%, var(--color-surface));
+  --color-role-blue-icon: color-mix(in srgb, var(--color-role-blue) 14%, var(--color-surface));
+
+  --color-role-green: #15803d;
+  --color-role-green-bg: color-mix(in srgb, var(--color-role-green) 7%, var(--color-surface));
+  --color-role-green-icon: color-mix(in srgb, var(--color-role-green) 14%, var(--color-surface));
+
+  --color-role-amber: #b45309;
+  --color-role-amber-bg: color-mix(in srgb, var(--color-role-amber) 7%, var(--color-surface));
+  --color-role-amber-icon: color-mix(in srgb, var(--color-role-amber) 14%, var(--color-surface));
+
+  --color-role-violet: #7c3aed;
+  --color-role-violet-bg: color-mix(in srgb, var(--color-role-violet) 7%, var(--color-surface));
+  --color-role-violet-icon: color-mix(in srgb, var(--color-role-violet) 14%, var(--color-surface));
+
   --shadow-sm: 0 2px 0 0 color-mix(in srgb, var(--color-accent) 5%, transparent),
     0 1px 2px -1px color-mix(in srgb, var(--color-accent) 5%, transparent);
   --shadow-md: 0 2px 0 0 color-mix(in srgb, var(--color-accent) 5%, transparent),
