@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0f1729;
+  --color-slate: #64748b;
+  --color-bg: #f6f7f9;
+  --color-surface: #ffffff;
+  --color-accent: #2463eb;
+  --color-accent-2: #7c3aed;
+
+  /*
+   * Categorical palette, slots 1-6 of the validated 8-hue reference order
+   * (blue, orange, aqua, yellow, magenta, green, violet, red) — used as-is,
+   * not reordered, so the adjacent-pair CVD guarantees the palette ships
+   * with still hold across the six week cards. One slot per week, fixed.
+   */
+  --color-week-1: #2a78d6;
+  --color-week-2: #eb6834;
+  --color-week-3: #1baf7a;
+  --color-week-4: #eda100;
+  --color-week-5: #e87ba4;
+  --color-week-6: #008300;
+
+  --color-week-1-bg: color-mix(in srgb, var(--color-week-1) 10%, var(--color-surface));
+  --color-week-2-bg: color-mix(in srgb, var(--color-week-2) 10%, var(--color-surface));
+  --color-week-3-bg: color-mix(in srgb, var(--color-week-3) 10%, var(--color-surface));
+  --color-week-4-bg: color-mix(in srgb, var(--color-week-4) 10%, var(--color-surface));
+  --color-week-5-bg: color-mix(in srgb, var(--color-week-5) 10%, var(--color-surface));
+  --color-week-6-bg: color-mix(in srgb, var(--color-week-6) 10%, var(--color-surface));
+
+  --shadow-sm: 0 2px 0 0 color-mix(in srgb, var(--color-accent) 5%, transparent),
+    0 1px 2px -1px color-mix(in srgb, var(--color-accent) 5%, transparent);
+  --shadow-md: 0 2px 0 0 color-mix(in srgb, var(--color-accent) 5%, transparent),
+    0 8px 20px -6px color-mix(in srgb, var(--color-ink) 15%, transparent);
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+}
+
+@layer utilities {
+  .gradient-wash {
+    background: radial-gradient(ellipse at top, color-mix(in srgb, var(--color-accent) 10%, transparent) 0%, var(--color-bg) 55%);
+  }
+
+  .gradient-text {
+    background: linear-gradient(to right, var(--color-accent), var(--color-accent-2));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .gradient-bar {
+    background: linear-gradient(to right, var(--color-accent), var(--color-accent-2));
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Confetti burst — a handful of absolutely-positioned squares that fall and
+   fade, triggered by toggling the .confetti-piece animation via JS adding
+   the container to the DOM. No canvas, no dependency. */
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-10px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(220px) rotate(540deg);
+    opacity: 0;
+  }
+}
+.confetti-piece {
+  position: absolute;
+  top: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  animation: confetti-fall 1.1s ease-in forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
